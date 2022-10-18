@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Zadanie1</string>
+    <string name="button_true">Prawda</string>
+    <string name="button_false">Fałsz</string>
+    <string name="button_next">Następne</string>
+    <string name="q_capital">Czy Białystok jest stolicą Polski?</string>
+    <string name="q_murki">Czy studenci mogą pić na murkach?</string>
+    <string name="q_java">Czy java jest słaba?</string>
+    <string name="q_vodka">Czy wódka ma ponad 69%?</string>
+    <string name="q_amogus">Amogus</string>
+    <string name="correct_answer">Poprawna odpowiedź</string>
+    <string name="incorrect_answer">Zła odpowiedź</string>
+</resources>
