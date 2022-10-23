@@ -10,4 +10,5 @@
     <string name="q_amogus">Amogus</string>
     <string name="correct_answer">Poprawna odpowiedź</string>
     <string name="incorrect_answer">Zła odpowiedź</string>
+    <string name="answer_was_shown">Odpowiedź już była wyświetlona</string>
 </resources>
