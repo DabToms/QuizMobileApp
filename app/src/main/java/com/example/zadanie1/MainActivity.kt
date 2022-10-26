@@ -11,9 +11,12 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private var KEY_CURRENT_INDEX: String = "currentIndex"
-    private val QUIZ_TAG: String = "Tag quizu"
-    private val REQUEST_CODE_PROMPT: Int = 0
-    val KEY_EXTRA_ANSWER: String = "com.example.zadanie1.correctAnswer"
+    private val QUIZ_TAG: String = "Tag_quizu"
+    companion object{
+        private var REQUEST_CODE_PROMPT: Int = 0
+        const val KEY_EXTRA_ANSWER: String = "com.example.zadanie1.PromptActivity.correctAnswer"
+    }
+
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
     private lateinit var nextButton: Button
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     private var currentIndex: Int = 0
-    private var answerWasShown: Boolean = false
+    private var answerWasShown: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,13 +58,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         promptButton.setOnClickListener {
-            var intent: Intent = Intent(
-                this, PromptActivity::class.java
-            )
+            var intent: Intent = Intent(this, PromptActivity::class.java)
             var correctAnswer: Boolean = questions[currentIndex].IsTrueAnswer()
-
             intent.putExtra(KEY_EXTRA_ANSWER, correctAnswer)
-            startActivity(intent)
             startActivityForResult(intent, REQUEST_CODE_PROMPT)
         }
 
@@ -70,10 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != RESULT_OK) return
+        if (resultCode != RESULT_OK) {return}
         if (resultCode == REQUEST_CODE_PROMPT) {
-            if (data == null) return
-            answerWasShown = data.getBooleanExtra(PromptActivity().KEY_EXTRA_ANSWER_SHOWN, false)
+            if (data == null) {return}
+            answerWasShown = data.getBooleanExtra(PromptActivity.KEY_EXTRA_ANSWER_SHOWN, false)
         }
     }
 
@@ -85,27 +84,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("start", "start")
+        Log.d(QUIZ_TAG, "start")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("pauza", "pauza")
+        Log.d(QUIZ_TAG, "pauza")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("resume", "resume")
+        Log.d(QUIZ_TAG, "resume")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("stop", "stop")
+        Log.d(QUIZ_TAG, "stop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("destroy", "destroy")
+        Log.d(QUIZ_TAG, "destroy")
     }
 
     private fun setNextQuestion() {

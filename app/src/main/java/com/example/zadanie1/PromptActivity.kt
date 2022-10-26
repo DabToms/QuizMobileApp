@@ -9,7 +9,9 @@ import android.widget.TextView
 
 class PromptActivity : AppCompatActivity()
 {
-    var KEY_EXTRA_ANSWER_SHOWN: String = "com.example.zadanie1.answerShown"
+    companion object{
+        var KEY_EXTRA_ANSWER_SHOWN: String = "com.example.zadanie1.MainActivity.answerShown"
+    }
     var correctAnswer: Boolean = false
     private lateinit var showCorrectAnswerButton: Button
     private lateinit var answerTextView: TextView
@@ -17,19 +19,19 @@ class PromptActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prompt)
+
+        correctAnswer = intent.getBooleanExtra(MainActivity.KEY_EXTRA_ANSWER, true)
+
         showCorrectAnswerButton = findViewById(R.id.correct_answer_button)
         answerTextView = findViewById(R.id.help_text_view)
 
-        showCorrectAnswerButton.setOnClickListener(View.OnClickListener() {
+        showCorrectAnswerButton.setOnClickListener {
+            var answer: Int = if (correctAnswer) R.string.button_true else R.string.button_false
+            answerTextView.setText(answer)
+            setAnswerShownResult(true)
+        }
 
-            fun onClick(v: View) {
-                var answer: Int = if (correctAnswer) R.string.button_true else R.string.button_false
-                answerTextView.setText(answer)
-                setAnswerShownResult(true)
-            }
-        })
 
-        correctAnswer = getIntent().getBooleanExtra(MainActivity().KEY_EXTRA_ANSWER, true)
     }
 
     private fun setAnswerShownResult(answerWasShown: Boolean) {
